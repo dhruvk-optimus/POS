@@ -1,0 +1,81 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# VS Code settings (optional)
+.vscode/
+
+# Visual Studio files
+.vs/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+*.nuget.props
+*.nuget.targets
+
+# Rider
+.idea/
+
+# Dotnet-generated files
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+*.log
+
+# Auto-generated files
+Generated_Code/
+*.g.*
+
+# Database (optional - depending on if you're using SQLite/MDF/etc)
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# User secrets
+secrets.json
+
+# Test results
+TestResults/
+
+# Coverage
+coverage/
+*.coverage
+*.coveragexml
+
+# Publish artifacts
+publish/
+wwwroot/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# JetBrains
+.idea/
+
+# Temporary files
+~$*
+*.tmp
+*.temp
+
+# EF Migrations snapshot (optional - if you prefer not to version them)
+**/Migrations/*Snapshot.cs
+
+appsettings.json
+appsettings.Development.json
