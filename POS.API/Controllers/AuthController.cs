@@ -14,7 +14,6 @@ namespace POS.API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<AuthResponseDTO>> Register([FromBody] RegisterUserRequestDTO request)
         {
-            // FIX this var
             AuthResponseDTO result = await mediator.Send(new RegisterUserCommand(request));
             return Ok(result);
         }
@@ -22,7 +21,6 @@ namespace POS.API.Controllers
         [HttpPost("login")]
         public async Task<ActionResult<AuthResponseDTO>> Login([FromBody] LoginUserRequestDTO request)
         {
-
             AuthResponseDTO result = await mediator.Send(new LoginUserCommand(request));
             return Ok(result);
         }

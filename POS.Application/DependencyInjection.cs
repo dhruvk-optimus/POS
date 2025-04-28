@@ -1,5 +1,7 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using POS.Application.Interfaces.Services;
+using POS.Application.Features.Order.Services;
 
 namespace POS.Application
 {
@@ -9,6 +11,7 @@ namespace POS.Application
         {
             services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddScoped<IOrderCreationService, OrderCreationService>();  
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

@@ -31,7 +31,25 @@ namespace POS.Persistence.Data
                 .Property(o => o.Status)
                 .HasConversion<string>();
 
-            
+            modelBuilder.Entity<OrderEntity>(entity =>
+            {
+                entity.Property(e => e.TotalAmount)
+                      .HasPrecision(18, 2);
+            });
+
+            modelBuilder.Entity<ItemEntity>(entity =>
+            {
+                entity.Property(e => e.Price)
+                      .HasPrecision(18, 2);
+            });
+
+
+            modelBuilder.Entity<OrderItemEntity>(entity =>
+            {
+                entity.Property(e => e.UnitPrice)
+                      .HasPrecision(18, 2);
+            });
+
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

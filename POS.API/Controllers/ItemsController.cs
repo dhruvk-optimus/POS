@@ -15,6 +15,25 @@ namespace POS.API.Controllers
 
         public ItemsController(IMediator mediator) => this._mediator = mediator;
 
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<IEnumerable<ItemResponseDTO>>> GetItems()
+        {
+            var query = new GetItemsQuery();
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("{itemId}")]
+        [Authorize]
+        public async Task<ActionResult<ItemResponseDTO>> GetItemById(Guid itemId)
+        {
+            var query = new GetItemByIdQuery(itemId);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<ItemResponseDTO>> AddItem([FromBody] AddItemRequestDTO request)
@@ -33,15 +52,6 @@ namespace POS.API.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<IEnumerable<ItemResponseDTO>>> GetItems()
-        {
-            var query = new GetItemsQuery();
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
         [HttpDelete("{itemId}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteItem(Guid itemId)
@@ -50,15 +60,5 @@ namespace POS.API.Controllers
             await _mediator.Send(command);
             return NoContent();
         }
-
-        [HttpGet("{itemId}")]
-        [Authorize]
-        public async Task<ActionResult<ItemResponseDTO>> GetItemById(Guid itemId)
-        {
-            var query = new GetItemByIdQuery(itemId);
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
     }
 }

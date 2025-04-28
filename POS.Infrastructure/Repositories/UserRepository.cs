@@ -8,6 +8,17 @@ namespace POS.Infrastructure.Repositories
 {
     public class UserRepository(POSDbContext _context) : IUserRepository
     {
+        public async Task<IEnumerable<UserEntity>> GetAllAsync(UserRole? role)
+        {
+            var query = _context.Users.AsQueryable();
+
+            if (!string.IsNullOrEmpty(role.ToString()))
+            {
+                query = query.Where(u => u.Role == role);
+            }
+
+            return await query.ToListAsync();
+        }
         public async Task<UserEntity?> GetByEmailAsync(string email)
         {
             UserEntity? user = await _context.Users
@@ -27,18 +38,6 @@ namespace POS.Infrastructure.Repositories
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
             return user;
-        }
-
-        public async Task<IEnumerable<UserEntity>> GetAllAsync(UserRole? role)
-        {
-            var query = _context.Users.AsQueryable();
-
-            if (!string.IsNullOrEmpty(role.ToString()))
-            {
-                query = query.Where(u => u.Role == role);
-            }
-
-            return await query.ToListAsync();
         }
 
         public async Task DeleteAsync(Guid id)

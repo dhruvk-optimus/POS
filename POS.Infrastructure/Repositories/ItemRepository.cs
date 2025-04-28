@@ -14,6 +14,18 @@ namespace POS.Infrastructure.Repositories
             _context = context;
         }
 
+
+        public async Task<IEnumerable<ItemEntity>> GetAllItemsAsync()
+        {
+            return await _context.Items.ToListAsync();
+        }
+
+        public async Task<ItemEntity?> GetItemByIdAsync(Guid itemId)
+        {
+            return await _context.Items.FindAsync(itemId);
+        }
+        
+
         public async Task<ItemEntity> AddItemAsync(ItemEntity item)
         {
             _context.Items.Add(item);
@@ -34,14 +46,6 @@ namespace POS.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ItemEntity?> GetItemByIdAsync(Guid itemId)
-        {
-            return await _context.Items.FindAsync(itemId);
-        }
 
-        public async Task<IEnumerable<ItemEntity>> GetAllItemsAsync()
-        {
-            return await _context.Items.ToListAsync();
-        }
     }
 }

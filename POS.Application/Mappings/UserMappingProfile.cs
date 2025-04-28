@@ -10,12 +10,7 @@ namespace POS.Application.Mappings
         public UserMappingProfile() { 
             CreateMap<RegisterUserRequestDTO, UserEntity>();
             CreateMap<UserEntity, AuthResponseDTO>();
-
             CreateMap<CreateUserRequestDTO, UserEntity>();
-            //CreateMap<CreateUserRequestDTO, UserEntity>()
-    //.ForMember(dest => dest.UserId, opt => opt.Ignore());
-
-
             CreateMap<UserEntity, UserResponseDTO>();
 
         }

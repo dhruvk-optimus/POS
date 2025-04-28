@@ -17,6 +17,24 @@ namespace POS.API.Controllers
 
         public UsersController(IMediator mediator) => _mediator = mediator;
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IEnumerable<UserResponseDTO>>> GetUsers([FromQuery] UserRole? role = null)
+        {
+            var query = new GetUsersQuery(role);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<UserResponseDTO>> GetUserById(Guid userId)
+        {
+            var query = new GetUserByIdQuery(userId);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
         [HttpPost("admin")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<UserResponseDTO>> CreateAdmin([FromBody] CreateUserRequestDTO request)
@@ -35,23 +53,6 @@ namespace POS.API.Controllers
             return CreatedAtAction(nameof(GetUserById), new { userId = result.UserId }, result);
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<UserResponseDTO>>> GetUsers([FromQuery] UserRole? role = null)
-        {
-            var query = new GetUsersQuery(role);
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
-
-        [HttpGet("{userId}")]
-        [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<UserResponseDTO>> GetUserById(Guid userId)
-        {
-            var query = new GetUserByIdQuery(userId);
-            var result = await _mediator.Send(query);
-            return Ok(result);
-        }
 
         [HttpDelete("{userId}")]
         [Authorize(Roles = "Admin")]

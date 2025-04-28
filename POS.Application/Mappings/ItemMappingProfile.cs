@@ -8,14 +8,12 @@ namespace POS.Application.Mappings
     {
         public ItemMappingProfile()
         {
-            // AddItemRequestDTO -> ItemEntity
+            
             CreateMap<AddItemRequestDTO, ItemEntity>()
-                .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => Guid.NewGuid())); // Setting the ItemId to be new GUID
+                .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => Guid.NewGuid())); 
 
-            // UpdateItemRequestDTO -> ItemEntity
             CreateMap<UpdateItemRequestDTO, ItemEntity>();
 
-            // ItemEntity -> ItemResponseDTO
             CreateMap<ItemEntity, ItemResponseDTO>();
         }
     }

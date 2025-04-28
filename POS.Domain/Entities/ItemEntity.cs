@@ -10,16 +10,15 @@ namespace POS.Domain.Entities
         [Required]
         public string Name { get; set; } = string.Empty;
 
-
         [Required]
         public decimal Price { get; set; }
-
 
         [Required]
         public int AvailableStock { get; set; }
 
+        //[Timestamp]
+        //public byte[]? RowVersion { get; set; }
 
         public ICollection<OrderItemEntity> OrderItems { get; set; } = new List<OrderItemEntity>();
-
     }
 }

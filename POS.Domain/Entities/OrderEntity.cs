@@ -10,7 +10,7 @@ namespace POS.Domain.Entities
         public Guid OrderId {get; set; } = Guid.NewGuid();
         public OrderStatus Status { get; set; }
 
-        public double TotalAmount { get; set; }
+        public decimal TotalAmount { get; set; }
         
 
         [ForeignKey(nameof(User))]

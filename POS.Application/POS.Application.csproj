@@ -15,8 +15,4 @@
     <ProjectReference Include="..\POS.Domain\POS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="DTOs\Order\" />
-  </ItemGroup>
-
 </Project>
